@@ -8,7 +8,16 @@
     <title>Document</title>
 </head>
 <body>
-    <header>Student Grade table</header>
+    <header>
+        <div class="row">
+            <div class="col">
+                Student Grade Table
+            </div>
+            <div class="col">
+                <h3>Average Grade <span class="badge badge-secondary">80</span></h6>
+            </div>
+        </div>
+    </header>
     <br>
     <table class="table table-bordered">
         <thead>
@@ -37,6 +46,7 @@
         </tbody>
     </table>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="components/page-header.js"></script>
     <script src="components/grade-table.js"></script>
     <script src="components/app.js"></script>
     <script src="main.js"></script>
