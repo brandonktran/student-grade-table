@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
@@ -14,38 +15,67 @@
                 Student Grade Table
             </div>
             <div class="col">
-                <h3>Average Grade <span class="badge badge-secondary">80</span></h6>
+                <h3>Average Grade <span class="badge badge-secondary">80</span></h3>
             </div>
         </div>
     </header>
     <br>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Student Name</th>
-                <th>Course</th>
-                <th>Grade</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- <tr>
-                <td>Tim Berners-Lee</td>
-                <td>Web Development</td>
-                <td>100</td>
-            </tr>
-            <tr>
-                <td>Scott Bowler</td>
-                <td>Web Development</td>
-                <td>100</td>
-            </tr>
-            <tr>
-                <td>Tim Davise</td>
-                <td>Web Development</td>
-                <td>50</td>
-            </tr> -->
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Course</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr>
+                            <td>Tim Berners-Lee</td>
+                            <td>Web Development</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>Scott Bowler</td>
+                            <td>Web Development</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>Tim Davise</td>
+                            <td>Web Development</td>
+                            <td>50</td>
+                        </tr> -->
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <form action="">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Name" name="name" aria-label="name">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Course" name="course" aria-label="course">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Grade" name="grade" aria-label="grade">
+                </div>
+                <button type="submit" value="Submit">Add</button>
+                <button type="reset" value="Reset">Cancel</button>
+            </form>
+        </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="components/grade-form.js"></script>
     <script src="components/page-header.js"></script>
     <script src="components/grade-table.js"></script>
     <script src="components/app.js"></script>

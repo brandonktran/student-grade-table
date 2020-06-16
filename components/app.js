@@ -1,11 +1,13 @@
-var key = 'kdAPDHqi';
-
 class App {
-	constructor(gradeTable, pageHeader) {
+	constructor(gradeTable, pageHeader, gradeForm) {
 		this.handleGetGradesError = this.handleGetGradesError.bind(this);
 		this.handleGetGradesSuccess = this.handleGetGradesSuccess.bind(this);
 		this.gradeTable = gradeTable;
 		this.pageHeader = pageHeader;
+		this.gradeForm = gradeForm;
+		this.createGrade = this.createGrade.bind(this);
+		this.handleCreateGradesError = this.handleCreateGradesError.bind(this);
+		this.handleCreateGradesSuccess = this.handleCreateGradesSuccess.bind(this);
 	}
 	handleGetGradesError(error) {
 		console.error(error);
@@ -31,6 +33,30 @@ class App {
 		});
 	}
 	start() {
+		this.getGrades();
+		this.gradeForm.onSubmit(this.createGrade);
+	}
+	createGrade(name, course, grade) {
+		console.log(typeof grade);
+		$.ajax({
+			method: 'POST',
+			url: 'https://sgt.lfzprototypes.com/api/grades',
+			data: {
+				"name": name,
+				"course": course,
+				"grade": parseFloat(grade)
+			},
+			headers: {
+				'X-Access-Token': 'kdAPDHqi'
+			},
+			error: this.handleCreateGradesError,
+			success: this.handleCreateGradesSuccess
+		});
+	}
+	handleCreateGradesError(error) {
+		console.log(error);
+	}
+	handleCreateGradesSuccess() {
 		this.getGrades();
 	}
 }
