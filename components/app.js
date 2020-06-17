@@ -11,11 +11,17 @@ class App {
 		this.deleteGrade = this.deleteGrade.bind(this);
 		this.handleDeleteGradesError = this.handleDeleteGradesError.bind(this);
 		this.handleDeleteGradesSuccess = this.handleDeleteGradesSuccess.bind(this);
+		this.reviseGrade = this.reviseGrade.bind(this);
+		this.editGrade = this.editGrade.bind(this);
+		this.handleReviseGradesError = this.handleReviseGradesError.bind(this);
+		this.handleReviseGradesSuccess = this.handleReviseGradesSuccess.bind(this);
 	}
 	handleGetGradesError(error) {
 		console.error(error);
 	}
 	handleGetGradesSuccess(grades) {
+		currentData = grades;
+		console.log(grades);
 		this.gradeTable.updateGrades(grades);
 		var avg = 0;
 		for (var i = 0; i < grades.length; i++) {
@@ -37,11 +43,11 @@ class App {
 	}
 	start() {
 		this.getGrades();
-		this.gradeForm.onSubmit(this.createGrade);
+		this.gradeForm.onSubmit(this.createGrade, this.reviseGrade, this.editGrade);
 		this.gradeTable.onDeleteClick(this.deleteGrade);
+		this.gradeTable.onEditClick(this.reviseGrade);
 	}
 	createGrade(name, course, grade) {
-		console.log(typeof grade);
 		$.ajax({
 			method: 'POST',
 			url: 'https://sgt.lfzprototypes.com/api/grades',
@@ -64,7 +70,6 @@ class App {
 		this.getGrades();
 	}
 	deleteGrade(id) {
-		console.log(id);
 		$.ajax({
 			method: 'DELETE',
 			url: 'https://sgt.lfzprototypes.com/api/grades/' + id,
@@ -79,6 +84,46 @@ class App {
 		console.error(error);
 	}
 	handleDeleteGradesSuccess() {
+		this.getGrades();
+	}
+	reviseGrade(id) {
+		var tempindex = 0;
+		for (var i = 0; i < currentData.length; i++) {
+			if (currentData[i].id === id) {
+				tempindex = i;
+			}
+		}
+		document.getElementById('labelAdd').textContent = 'Update a Grade';
+		document.querySelector('input[name="name"]').value = currentData[tempindex].name;
+		document.querySelector('input[name="course"]').value = currentData[tempindex].course;
+		document.querySelector('input[name="grade"]').value = currentData[tempindex].grade;
+		var submit = document.querySelector('button[type="submit"]');
+		submit.textContent = 'Update';
+		currentID = id;
+	}
+	editGrade(name, course, grade) {
+		var data = { "name": name, "course": course, "grade": grade };
+		$.ajax({
+			method: 'PATCH',
+			url: 'https://sgt.lfzprototypes.com/api/grades/' + currentID,
+			data: data,
+			headers: {
+				'X-Access-Token': 'kdAPDHqi'
+			},
+			error: this.handleReviseGradesError,
+			success: this.handleReviseGradesSuccess
+		});
+	}
+	handleReviseGradesError(error) {
+		console.error(error);
+		document.getElementById('labelAdd').textContent = 'Add a Grade';
+		var submit = document.querySelector('button[type="submit"]');
+		submit.textContent = 'Add';
+	}
+	handleReviseGradesSuccess() {
+		document.getElementById('labelAdd').textContent = 'Add a Grade';
+		var submit = document.querySelector('button[type="submit"]');
+		submit.textContent = 'Add';
 		this.getGrades();
 	}
 }
