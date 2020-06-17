@@ -18,7 +18,7 @@ class GradeForm {
 		var grade = formdata.get('grade');
 		if (submit.textContent === 'Add') {
 			this.createGrade(name, course, grade);
-		} else if (submit.textContent === 'Edit') {
+		} else if (submit.textContent === 'Update') {
 			this.editGrade(name, course, grade);
 		}
 		event.target.reset();

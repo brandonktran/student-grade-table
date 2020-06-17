@@ -86,8 +86,9 @@ class App {
 		this.getGrades();
 	}
 	reviseGrade(id) {
+		document.getElementById('labelAdd').textContent = 'Update a Grade';
 		var submit = document.querySelector('button[type="submit"]');
-		submit.textContent = 'Edit';
+		submit.textContent = 'Update';
 		currentID = id;
 	}
 	editGrade(name, course, grade) {
@@ -120,10 +121,12 @@ class App {
 	}
 	handleReviseGradesError(error) {
 		console.error(error);
+		document.getElementById('labelAdd').textContent = 'Add a Grade';
 		var submit = document.querySelector('button[type="submit"]');
 		submit.textContent = 'Add';
 	}
 	handleReviseGradesSuccess() {
+		document.getElementById('labelAdd').textContent = 'Add a Grade';
 		var submit = document.querySelector('button[type="submit"]');
 		submit.textContent = 'Add';
 		this.getGrades();
