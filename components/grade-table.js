@@ -13,14 +13,17 @@ class GradeTable {
 		var body = table.querySelector('tbody');
 		body.innerHTML = '';
 		for (var i = 0; i < grades.length; i++) {
-			var row = this.renderGradeRow(grades[i], this.deleteGradee)
+			var row = this.renderGradeRow(grades[i], this.deleteGradee, this.reviseGradee)
 			body.append(row);
 		}
 	}
 	onDeleteClick(deleteGrade) {
 		this.deleteGradee = deleteGrade;
 	}
-	renderGradeRow(data, deleteGrade) {
+	onEditClick(reviseGrade) {
+		this.reviseGradee = reviseGrade;
+	}
+	renderGradeRow(data, deleteGrade, reviseGrade) {
 		var row = document.createElement('tr');
 		var name = document.createElement('td');
 		name.textContent = data.name;
@@ -37,7 +40,13 @@ class GradeTable {
 		button.addEventListener('click', function () {
 			deleteGrade(data.id);
 		});
+		var button1 = document.createElement('button');
+		button1.textContent = 'Edit';
+		button1.addEventListener('click', function () {
+			reviseGrade(data.id);
+		});
 		del.append(button);
+		del.append(button1)
 		row.append(del);
 		return row;
 	}
