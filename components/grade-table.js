@@ -13,15 +13,15 @@ class GradeTable {
 		var body = table.querySelector('tbody');
 		body.innerHTML = '';
 		for (var i = 0; i < grades.length; i++) {
-			var row = this.renderGradeRow(grades[i], this.deleteGradee, this.reviseGradee)
+			var row = this.renderGradeRow(grades[i], this.deleteGrade, this.reviseGrade)
 			body.append(row);
 		}
 	}
 	onDeleteClick(deleteGrade) {
-		this.deleteGradee = deleteGrade;
+		this.deleteGrade = deleteGrade;
 	}
 	onEditClick(reviseGrade) {
-		this.reviseGradee = reviseGrade;
+		this.reviseGrade = reviseGrade;
 	}
 	renderGradeRow(data, deleteGrade, reviseGrade) {
 		var row = document.createElement('tr');

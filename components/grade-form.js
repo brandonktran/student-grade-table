@@ -11,7 +11,6 @@ class GradeForm {
 	handleSubmit(event) {
 		var submit = document.querySelector('button[type="submit"]');
 		event.preventDefault();
-		console.log('hi');
 		var formdata = new FormData(event.target);
 		var name = formdata.get('name');
 		var course = formdata.get('course');

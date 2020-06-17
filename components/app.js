@@ -20,6 +20,7 @@ class App {
 		console.error(error);
 	}
 	handleGetGradesSuccess(grades) {
+		currentData = grades;
 		console.log(grades);
 		this.gradeTable.updateGrades(grades);
 		var avg = 0;
@@ -86,28 +87,22 @@ class App {
 		this.getGrades();
 	}
 	reviseGrade(id) {
+		var tempindex = 0;
+		for (var i = 0; i < currentData.length; i++) {
+			if (currentData[i].id === id) {
+				tempindex = i;
+			}
+		}
 		document.getElementById('labelAdd').textContent = 'Update a Grade';
+		document.querySelector('input[name="name"]').value = currentData[tempindex].name;
+		document.querySelector('input[name="course"]').value = currentData[tempindex].course;
+		document.querySelector('input[name="grade"]').value = currentData[tempindex].grade;
 		var submit = document.querySelector('button[type="submit"]');
 		submit.textContent = 'Update';
 		currentID = id;
 	}
 	editGrade(name, course, grade) {
-		var data;
-		if (name && !course && !grade) {
-			data = { "name": name };
-		} else if (!name && course && !grade) {
-			data = { "course": course };
-		} else if (!name && !course && grade) {
-			data = { "grade": grade };
-		} else if (name && course && !grade) {
-			data = { "name": name, "course": course };
-		} else if (name && !course && grade) {
-			data = { "name": name, "grade": grade };
-		} else if (!name && course && grade) {
-			data = { "course": course, "grade": grade };
-		} else {
-			data = { "name": name, "course": course, "grade": grade };
-		}
+		var data = { "name": name, "course": course, "grade": grade };
 		$.ajax({
 			method: 'PATCH',
 			url: 'https://sgt.lfzprototypes.com/api/grades/' + currentID,
