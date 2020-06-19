@@ -23,8 +23,8 @@ class App {
 		currentData = grades;
 		console.log(grades);
 		this.gradeTable.updateGrades(grades);
-		var avg = 0;
-		for (var i = 0; i < grades.length; i++) {
+		let avg = 0;
+		for (let i = 0; i < grades.length; i++) {
 			avg += grades[i].grade;
 		}
 		avg = avg / grades.length;
@@ -87,8 +87,8 @@ class App {
 		this.getGrades();
 	}
 	reviseGrade(id) {
-		var tempindex = 0;
-		for (var i = 0; i < currentData.length; i++) {
+		let tempindex = 0;
+		for (let i = 0; i < currentData.length; i++) {
 			if (currentData[i].id === id) {
 				tempindex = i;
 			}
@@ -97,12 +97,12 @@ class App {
 		document.querySelector('input[name="name"]').value = currentData[tempindex].name;
 		document.querySelector('input[name="course"]').value = currentData[tempindex].course;
 		document.querySelector('input[name="grade"]').value = currentData[tempindex].grade;
-		var submit = document.querySelector('button[type="submit"]');
+		const submit = document.querySelector('button[type="submit"]');
 		submit.textContent = 'Update';
 		currentID = id;
 	}
 	editGrade(name, course, grade) {
-		var data = { "name": name, "course": course, "grade": grade };
+		const data = { "name": name, "course": course, "grade": grade };
 		$.ajax({
 			method: 'PATCH',
 			url: 'https://sgt.lfzprototypes.com/api/grades/' + currentID,
@@ -117,12 +117,12 @@ class App {
 	handleReviseGradesError(error) {
 		console.error(error);
 		document.getElementById('labelAdd').textContent = 'Add a Grade';
-		var submit = document.querySelector('button[type="submit"]');
+		const submit = document.querySelector('button[type="submit"]');
 		submit.textContent = 'Add';
 	}
 	handleReviseGradesSuccess() {
 		document.getElementById('labelAdd').textContent = 'Add a Grade';
-		var submit = document.querySelector('button[type="submit"]');
+		const submit = document.querySelector('button[type="submit"]');
 		submit.textContent = 'Add';
 		this.getGrades();
 	}

@@ -9,12 +9,12 @@ class GradeForm {
 		this.editGrade = editGrade;
 	}
 	handleSubmit(event) {
-		var submit = document.querySelector('button[type="submit"]');
+		const submit = document.querySelector('button[type="submit"]');
 		event.preventDefault();
-		var formdata = new FormData(event.target);
-		var name = formdata.get('name');
-		var course = formdata.get('course');
-		var grade = formdata.get('grade');
+		const formdata = new FormData(event.target);
+		const name = formdata.get('name');
+		const course = formdata.get('course');
+		const grade = formdata.get('grade');
 		if (submit.textContent === 'Add') {
 			this.createGrade(name, course, grade);
 		} else if (submit.textContent === 'Update') {
