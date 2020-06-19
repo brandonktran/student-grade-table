@@ -1,6 +1,6 @@
-const header = document.getElementsByTagName('header')[0];
-const form = document.getElementsByTagName('form')[0];
-const p = document.getElementsByClassName('d-none')[0];
+const header = document.querySelector('header');
+const form = document.querySelector('form');
+const p = document.querySelector('.d-none');
 let currentID;
 let currentData;
 const gradeform = new GradeForm(form);
